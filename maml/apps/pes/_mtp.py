@@ -530,6 +530,7 @@ class MTPotential(LammpsPotential):
         train_stresses,
         unfitted_mtp="08g.mtp",
         max_dist=5,
+        min_dist=1,
         radial_basis_size=8,
         max_iter=1000,
         energy_weight=1,
@@ -599,7 +600,9 @@ class MTPotential(LammpsPotential):
 
             with open("min_dist") as f:
                 lines = f.readlines()
-            min_dist = float(lines[-1].split(":")[1])
+
+            if min_dist < 0:
+                min_dist = float(lines[-1].split(":")[1])
 
             with open(unfitted_mtp) as f:
                 template = f.read()
