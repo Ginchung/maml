@@ -617,8 +617,6 @@ class MTPotential(LammpsPotential):
             with subprocess.Popen(
                 [
                     "mpirun",
-                    "-n",
-                    f"{num_cores}",
                     "mlp",
                     "train",
                     unfitted_mtp,
